@@ -1,20 +1,12 @@
+import 'reflect-metadata';
 import express from 'express';
+import './database';
+import { router } from './routes';
 
 const app = express();
 
-
-app.get("/users", (req, res) => {
-  return res.status(200).json({
-    msg: "All users"
-  });
-});
-
-app.post("/users", (req, res) => {
-  const { name, surname, lastName } = req.body;
-  return res.status(201).json({
-    msg: "Data received with success"
-  });
-});
+app.use(express.json());
+app.use(router);
 
 
 app.listen(3333, () => {
